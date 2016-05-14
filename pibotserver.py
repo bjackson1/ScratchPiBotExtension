@@ -5,11 +5,14 @@ from socket import gethostname
 from threading import Thread
 
 from time import sleep
+from RPi.GPIO import GPIO
 
 
 app = Flask(__name__)
 
 busyId = -1
+leftForwardControl = gpiocontrol(24)
+rightForwardControl = gpiocontrol(19)
 
 @app.route('/poll')
 def poll():
@@ -20,23 +23,39 @@ def poll():
     ret = "_busy " + str(busyId)
 
   return ret
-
-@app.route('/playBeep/<id>')
-def playBeep(id):
-  global busyId
-  
-  busyId = int(id)
-  sleep(3)
-  busyId = -1
-  return "_result 0"
   
 @app.route('/move/<wheel>/<speed>')
 def move(wheel, speed):
+  if wheel == "left":
+    leftForwardControl.set(True)
+
   return "_result 0"
 
 @app.route('/stop/<wheel>')
 def stop(wheel):
+  if wheel == "left":
+    leftForwardControl.set(False)
+
   return "_result 0"
 
 if __name__ == '__main__':
   app.run(debug=True, host='0.0.0.0', threaded=True)
+
+
+
+
+class gpiocontrol:
+
+    def __init__(self, pin):
+        self.pin = int(pin)
+        gpio.setwarnings(False)
+        gpio.setmode(gpio.BCM)
+        gpio.setup(self.pin, gpio.OUT)
+
+    # def get(self):
+    #   return gpio.input(self.pin)
+
+    def set(self, state):
+        gpio.output(self.pin, state)
+
+
