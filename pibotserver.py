@@ -8,6 +8,25 @@ from time import sleep
 import RPi.GPIO as GPIO
 
 
+
+
+
+class gpiocontrol:
+
+    def __init__(self, pin):
+        self.pin = int(pin)
+        gpio.setwarnings(False)
+        gpio.setmode(gpio.BCM)
+        gpio.setup(self.pin, gpio.OUT)
+
+    # def get(self):
+    #   return gpio.input(self.pin)
+
+    def set(self, state):
+        gpio.output(self.pin, state)
+
+
+
 app = Flask(__name__)
 
 busyId = -1
@@ -42,20 +61,5 @@ if __name__ == '__main__':
   app.run(debug=True, host='0.0.0.0', threaded=True)
 
 
-
-
-class gpiocontrol:
-
-    def __init__(self, pin):
-        self.pin = int(pin)
-        gpio.setwarnings(False)
-        gpio.setmode(gpio.BCM)
-        gpio.setup(self.pin, gpio.OUT)
-
-    # def get(self):
-    #   return gpio.input(self.pin)
-
-    def set(self, state):
-        gpio.output(self.pin, state)
 
 
