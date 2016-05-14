@@ -15,15 +15,15 @@ class gpiocontrol:
 
     def __init__(self, pin):
         self.pin = int(pin)
-        gpio.setwarnings(False)
-        gpio.setmode(gpio.BCM)
-        gpio.setup(self.pin, gpio.OUT)
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.pin, GPIO.OUT)
 
     # def get(self):
-    #   return gpio.input(self.pin)
+    #   return GPIO.input(self.pin)
 
     def set(self, state):
-        gpio.output(self.pin, state)
+        GPIO.output(self.pin, state)
 
 
 
