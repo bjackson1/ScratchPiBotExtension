@@ -5,7 +5,7 @@ from socket import gethostname
 from threading import Thread
 
 from time import sleep
-from RPi.GPIO import GPIO
+import RPi.GPIO as GPIO
 
 
 app = Flask(__name__)
