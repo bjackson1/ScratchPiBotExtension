@@ -2,11 +2,14 @@
 	"extensionName": "PiBot",
 	"extensionPort": 5000,
 	"blockSpecs": [
-	    [" ", "move %m.wheel wheel(s) forward at speed: %m.speed", "move"],
-		[" ", "stop %m.wheel wheel(s)", "stop"]
+	    ["w", "move %m.wheel wheel(s) %m.direction for %n seconds at speed: %m.speed", "move"],
+		[" ", "stop %m.wheel wheel(s)", "stop"],
+		["w", "turn %m.turndirection for %n seconds at speed: %m.speed", "turn"]
 	],
 	"menus": {
 		"wheel": ["left", "right", "both"],
-		"speed": ["slow", "medium", "fast"]
+		"speed": ["slow", "medium", "fast"],
+		"direction": ["forward", "backward"],
+		"turndirection": ["left", "right"]
 	}
 }
