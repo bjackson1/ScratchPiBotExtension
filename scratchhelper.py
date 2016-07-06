@@ -29,7 +29,7 @@ def poll():
 def move(id, wheel, direction, time, speed):
   global busyId
   busyId = id
-  res = urllib2.urlopen('http://192.168.1.68:5000/move/' + wheel + '/' + direction + '/' + time + '/' + speed)
+  res = urllib2.urlopen('http://192.168.2.101:5000/move/' + wheel + '/' + direction + '/' + time + '/' + speed)
   busyId = -1
 
   print(res)
@@ -39,14 +39,14 @@ def move(id, wheel, direction, time, speed):
 def turn(id, turndirection, time, speed):
   global busyId
   busyId = id
-  urllib2.urlopen('http://192.168.1.68:5000/turn/' + turndirection + '/' + time + '/' + speed)
+  urllib2.urlopen('http://192.168.2.101:5000/turn/' + turndirection + '/' + time + '/' + speed)
   busyId = -1
 
   return "_result 0"
 
 @app.route('/stop/<wheel>')
 def stop(wheel):
-  urllib2.urlopen('http://192.168.1.68:5000/stop/' + wheel)
+  urllib2.urlopen('http://192.168.2.101:5000/stop/' + wheel)
   return "_result 0"
 
 if __name__ == '__main__':
